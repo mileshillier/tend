@@ -12,8 +12,7 @@ function FullWidthCard({ contact, onOpen }) {
       style={{
         background: 'white',
         borderRadius: 18,
-        border: '1px solid #fecaca',
-        borderTop: '3px solid #ef4444',
+        border: '1px solid #f0ece8',
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
@@ -22,7 +21,9 @@ function FullWidthCard({ contact, onOpen }) {
         boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
       }}
     >
-      <Avatar contact={contact} size={48} />
+      <div style={{ borderRadius: '50%', border: '2px solid #ef4444', padding: 2, flexShrink: 0 }}>
+        <Avatar contact={contact} size={48} />
+      </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 14, fontWeight: 600, color: '#1c1917', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {contact.name}
@@ -47,8 +48,7 @@ function CompactSquareCard({ contact, onOpen }) {
       style={{
         background: 'white',
         borderRadius: 16,
-        border: '1px solid #fde68a',
-        borderTop: '2px solid #f59e0b',
+        border: '1px solid #f0ece8',
         cursor: 'pointer',
         aspectRatio: '1',
         display: 'flex',
@@ -60,7 +60,9 @@ function CompactSquareCard({ contact, onOpen }) {
         boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
       }}
     >
-      <Avatar contact={contact} size={40} />
+      <div style={{ borderRadius: '50%', border: '2px solid #f59e0b', padding: 2, flexShrink: 0 }}>
+        <Avatar contact={contact} size={40} />
+      </div>
       <div style={{ textAlign: 'center', width: '100%' }}>
         <div style={{
           fontSize: 12,
