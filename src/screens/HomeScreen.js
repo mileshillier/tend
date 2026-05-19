@@ -1,6 +1,7 @@
 import { Avatar } from '../components/Avatar';
-import { BrandMark } from '../components/BrandMark';
 import { getHealthStatus, getOverdueRatio, getDaysSince, formatDaysAgo } from '../data/contacts';
+
+const HEADER_H = 80;
 
 // Full-width card for "reach out" urgency
 function FullWidthCard({ contact, onOpen }) {
@@ -136,21 +137,10 @@ export function HomeScreen({ contacts, onOpenContact }) {
   const totalOverdue = urgent.length + dueSoon.length;
 
   return (
-    <div style={{ minHeight: '100vh', paddingBottom: 96, background: '#faf8f5' }}>
+    <div style={{ minHeight: '100vh', paddingBottom: 96, paddingTop: HEADER_H, background: '#faf8f5' }}>
 
-      {/* Branded header */}
-      <div style={{
-        background: 'linear-gradient(180deg, #fdeee5 0%, #faf8f5 100%)',
-        padding: '52px 20px 24px',
-        borderBottom: '1px solid #f5ede6',
-        marginBottom: 8,
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-          <BrandMark size="md" />
-          <span style={{ fontSize: 12, color: '#c4bdb8', fontWeight: 500, letterSpacing: '0.01em' }}>
-            May 7, 2026
-          </span>
-        </div>
+      {/* Subtitle */}
+      <div style={{ padding: '16px 20px 8px' }}>
         <p style={{ fontSize: 14, color: '#78716c', margin: 0, fontWeight: 400 }}>
           {totalOverdue > 0
             ? `${totalOverdue} ${totalOverdue === 1 ? 'person' : 'people'} could use a hello`

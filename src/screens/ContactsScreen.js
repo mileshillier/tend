@@ -54,17 +54,9 @@ export function ContactsScreen({ contacts, onOpenContact }) {
   }, {});
 
   return (
-    <div className="min-h-screen pb-24" style={{ background: '#faf8f5' }}>
-      {/* Header */}
-      <div className="px-5 pt-12 pb-3">
-        <h1
-          className="text-2xl font-bold tracking-tight mb-4"
-          style={{ color: '#1c1109', letterSpacing: '-0.02em' }}
-        >
-          Contacts
-        </h1>
-
-        {/* Search */}
+    <div className="min-h-screen pb-24" style={{ background: '#faf8f5', paddingTop: 80 }}>
+      {/* Search */}
+      <div className="px-4 pt-3 pb-2">
         <div className="relative">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"

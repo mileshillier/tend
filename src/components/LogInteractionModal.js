@@ -83,7 +83,7 @@ export function LogInteractionModal({ contacts, preselectedContactId, onSubmit, 
                   <div className="text-xs text-stone-500 capitalize">{selectedContact.relationship}</div>
                 </div>
                 {!preselectedContactId && (
-                  <span className="ml-auto text-xs text-clay-500 font-medium" style={{ color: '#c4501f' }}>Change</span>
+                  <span className="ml-auto text-xs font-medium" style={{ color: '#4d7c5f' }}>Change</span>
                 )}
               </button>
             ) : (
@@ -120,9 +120,9 @@ export function LogInteractionModal({ contacts, preselectedContactId, onSubmit, 
                   onClick={() => setType(t)}
                   className="flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-medium transition-all"
                   style={{
-                    border: type === t ? '2px solid #c4501f' : '2px solid #e7e5e4',
-                    backgroundColor: type === t ? '#fde8db' : '#faf8f5',
-                    color: type === t ? '#9a3412' : '#78716c',
+                    border: type === t ? '2px solid #4d7c5f' : '2px solid #e7e5e4',
+                    backgroundColor: type === t ? '#e4ede8' : '#faf8f5',
+                    color: type === t ? '#2d5a40' : '#78716c',
                     cursor: 'pointer',
                   }}
                 >
@@ -170,11 +170,11 @@ export function LogInteractionModal({ contacts, preselectedContactId, onSubmit, 
             className="w-full py-3.5 rounded-xl text-sm font-semibold text-white transition-all active:scale-[0.98]"
             style={{
               background: selectedContactId
-                ? 'linear-gradient(135deg, #d4602a 0%, #c4501f 100%)'
+                ? 'linear-gradient(135deg, #5a8a6a 0%, #4d7c5f 100%)'
                 : '#d4d0cc',
               border: 'none',
               cursor: selectedContactId ? 'pointer' : 'not-allowed',
-              boxShadow: selectedContactId ? '0 4px 12px rgba(196,80,31,0.3)' : 'none',
+              boxShadow: selectedContactId ? '0 4px 12px rgba(77,124,95,0.3)' : 'none',
             }}
           >
             Log interaction

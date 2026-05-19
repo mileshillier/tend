@@ -7,12 +7,12 @@ function TendIcon({ size = 34 }) {
         width: size,
         height: size,
         borderRadius: Math.round(size * 0.3),
-        background: 'linear-gradient(145deg, #d4602a 0%, #b83d10 100%)',
+        background: 'linear-gradient(145deg, #5a8a6a 0%, #3d6b4f 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
-        boxShadow: '0 2px 10px rgba(184, 61, 16, 0.32)',
+        boxShadow: '0 2px 10px rgba(61, 107, 79, 0.32)',
       }}
     >
       <svg width={iconSize} height={iconSize} viewBox="0 0 20 20" fill="none">
@@ -41,7 +41,7 @@ function TendIcon({ size = 34 }) {
 
 export function BrandMark({ size = 'md' }) {
   const sizes = {
-    sm: { icon: 26, wordmark: 17, gap: 7 },
+    sm: { icon: 30, wordmark: 19, gap: 8 },
     md: { icon: 34, wordmark: 21, gap: 9 },
     lg: { icon: 44, wordmark: 27, gap: 11 },
   };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { initialContacts } from './data/contacts';
 import { BottomNav } from './components/BottomNav';
+import { AppHeader } from './components/AppHeader';
 import { LogInteractionModal } from './components/LogInteractionModal';
 import { AddContactModal } from './components/AddContactModal';
 import { HomeScreen } from './screens/HomeScreen';
@@ -69,6 +70,12 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#faf8f5' }}>
+      <AppHeader
+        selectedContact={selectedContact}
+        onBack={closeContact}
+        onLog={() => openLogModal(selectedContact?.id)}
+      />
+
       {selectedContact ? (
         <ContactDetailScreen
           contact={selectedContact}

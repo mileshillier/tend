@@ -84,9 +84,9 @@ function FrequencyPicker({ value, onChange }) {
             onClick={() => handleChange(freq)}
             className="flex-1 py-2 rounded-xl text-xs font-semibold transition-all"
             style={{
-              border: value === freq ? '2px solid #c4501f' : '2px solid #e7e5e4',
-              backgroundColor: value === freq ? '#fde8db' : '#faf8f5',
-              color: value === freq ? '#9a3412' : '#78716c',
+              border: value === freq ? '2px solid #4d7c5f' : '2px solid #e7e5e4',
+              backgroundColor: value === freq ? '#e4ede8' : '#faf8f5',
+              color: value === freq ? '#2d5a40' : '#78716c',
               cursor: 'pointer',
             }}
           >
@@ -128,45 +128,10 @@ export function ContactDetailScreen({ contact, onBack, onLog, onFrequencyChange 
   );
 
   return (
-    <div className="min-h-screen pb-24" style={{ background: '#faf8f5' }}>
-      {/* Nav */}
-      <div className="flex items-center justify-between px-4 pt-12 pb-4">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-1.5 text-sm font-medium rounded-xl px-3 py-2 transition-colors"
-          style={{
-            color: '#c4501f',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-          }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18l-6-6 6-6" stroke="#c4501f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          Back
-        </button>
-
-        <button
-          onClick={onLog}
-          className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full transition-all active:scale-95"
-          style={{
-            background: 'linear-gradient(135deg, #d4602a 0%, #c4501f 100%)',
-            color: '#fff',
-            border: 'none',
-            cursor: 'pointer',
-            boxShadow: '0 2px 8px rgba(196,80,31,0.3)',
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-            <path d="M12 5v14M5 12h14" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" />
-          </svg>
-          Log
-        </button>
-      </div>
+    <div className="min-h-screen pb-24" style={{ background: '#faf8f5', paddingTop: 80 }}>
 
       {/* Profile */}
-      <div className="flex flex-col items-center px-5 pb-6">
+      <div className="flex flex-col items-center px-5 pt-4 pb-6">
         <Avatar contact={contact} size={80} />
         <h1
           className="text-xl font-bold mt-3 tracking-tight text-stone-900"

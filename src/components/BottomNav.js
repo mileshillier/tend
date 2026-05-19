@@ -3,14 +3,14 @@ function HomeIcon({ active }) {
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path
         d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"
-        stroke={active ? '#c4501f' : '#a8a29e'}
+        stroke={active ? '#4d7c5f' : '#a8a29e'}
         strokeWidth="1.75"
         strokeLinejoin="round"
-        fill={active ? '#fde8db' : 'none'}
+        fill={active ? '#e4ede8' : 'none'}
       />
       <path
         d="M9 21V12h6v9"
-        stroke={active ? '#c4501f' : '#a8a29e'}
+        stroke={active ? '#4d7c5f' : '#a8a29e'}
         strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -24,25 +24,25 @@ function PeopleIcon({ active }) {
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <circle
         cx="9" cy="8" r="3.25"
-        stroke={active ? '#c4501f' : '#a8a29e'}
+        stroke={active ? '#4d7c5f' : '#a8a29e'}
         strokeWidth="1.75"
-        fill={active ? '#fde8db' : 'none'}
+        fill={active ? '#e4ede8' : 'none'}
       />
       <path
         d="M3 20c0-3.314 2.686-5 6-5s6 1.686 6 5"
-        stroke={active ? '#c4501f' : '#a8a29e'}
+        stroke={active ? '#4d7c5f' : '#a8a29e'}
         strokeWidth="1.75"
         strokeLinecap="round"
       />
       <circle
         cx="17" cy="9" r="2.5"
-        stroke={active ? '#c4501f' : '#a8a29e'}
+        stroke={active ? '#4d7c5f' : '#a8a29e'}
         strokeWidth="1.5"
-        fill={active ? '#fde8db' : 'none'}
+        fill={active ? '#e4ede8' : 'none'}
       />
       <path
         d="M21 20c0-2.761-1.791-4-4-4"
-        stroke={active ? '#c4501f' : '#a8a29e'}
+        stroke={active ? '#4d7c5f' : '#a8a29e'}
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -79,7 +79,7 @@ export function BottomNav({ activeTab, onTabChange, onAddPress }) {
             style={{
               fontSize: 11,
               fontWeight: activeTab === 'home' ? 600 : 400,
-              color: activeTab === 'home' ? '#c4501f' : '#a8a29e',
+              color: activeTab === 'home' ? '#4d7c5f' : '#a8a29e',
               letterSpacing: '0.01em',
             }}
           >
@@ -94,11 +94,11 @@ export function BottomNav({ activeTab, onTabChange, onAddPress }) {
           style={{
             width: 54,
             height: 54,
-            background: 'linear-gradient(135deg, #d4602a 0%, #c4501f 100%)',
+            background: 'linear-gradient(135deg, #5a8a6a 0%, #4d7c5f 100%)',
             border: 'none',
             cursor: 'pointer',
             marginTop: -16,
-            boxShadow: '0 4px 16px rgba(196,80,31,0.4)',
+            boxShadow: '0 4px 16px rgba(77,124,95,0.4)',
           }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -122,7 +122,7 @@ export function BottomNav({ activeTab, onTabChange, onAddPress }) {
             style={{
               fontSize: 11,
               fontWeight: activeTab === 'contacts' ? 600 : 400,
-              color: activeTab === 'contacts' ? '#c4501f' : '#a8a29e',
+              color: activeTab === 'contacts' ? '#4d7c5f' : '#a8a29e',
               letterSpacing: '0.01em',
             }}
           >
