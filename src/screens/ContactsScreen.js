@@ -50,8 +50,17 @@ function ContactRow({ contact, onOpen }) {
 export function ContactsScreen({ contacts, onOpenContact }) {
   const [query, setQuery] = useState('');
 
+  const q = query.toLowerCase();
   const filtered = contacts
-    .filter(c => c.name.toLowerCase().includes(query.toLowerCase()))
+    .filter(c => {
+      if (!q) return true;
+      if (c.name.toLowerCase().includes(q)) return true;
+      if (c.relationship.toLowerCase().includes(q)) return true;
+      return c.interactions.some(i =>
+        i.type.toLowerCase().includes(q) ||
+        (i.note && i.note.toLowerCase().includes(q))
+      );
+    })
     .sort((a, b) => a.name.localeCompare(b.name));
 
   // Group by first letter
