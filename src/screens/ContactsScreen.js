@@ -3,6 +3,14 @@ import { Avatar } from '../components/Avatar';
 import { STATUS_LABELS, STATUS_TEXT } from '../components/HealthDot';
 import { getHealthStatus, getDaysSince, formatDaysAgo } from '../data/contacts';
 
+function BusinessIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="#a8a29e" style={{ flexShrink: 0 }}>
+      <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
+    </svg>
+  );
+}
+
 function ContactRow({ contact, onOpen }) {
   const health = getHealthStatus(contact);
   const days = getDaysSince(contact);
@@ -17,6 +25,7 @@ function ContactRow({ contact, onOpen }) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
           <span className="text-sm font-semibold text-stone-900 truncate">{contact.name}</span>
+          {contact.relationship === 'professional' && <BusinessIcon />}
         </div>
         <div className="flex items-center gap-1.5 mt-0.5">
           <span className="text-xs text-stone-400 capitalize">{contact.relationship}</span>

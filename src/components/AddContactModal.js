@@ -26,7 +26,7 @@ export function AddContactModal({ onAdd, onClose }) {
 
   return (
     <div
-      className="sheet-backdrop fixed inset-0 z-50 flex items-end"
+      className="sheet-backdrop fixed inset-0 z-[150] flex items-end"
       style={{ backgroundColor: 'rgba(28,21,18,0.5)' }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >

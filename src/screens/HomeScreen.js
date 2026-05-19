@@ -3,6 +3,14 @@ import { getHealthStatus, getOverdueRatio, getDaysSince, formatDaysAgo } from '.
 
 const HEADER_H = 80;
 
+function BusinessIcon({ size = 12, color = '#a8a29e' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} style={{ flexShrink: 0 }}>
+      <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
+    </svg>
+  );
+}
+
 // Full-width card for "reach out" urgency
 function FullWidthCard({ contact, onOpen }) {
   const days = getDaysSince(contact);
@@ -25,8 +33,11 @@ function FullWidthCard({ contact, onOpen }) {
         <Avatar contact={contact} size={48} />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: '#1c1917', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {contact.name}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+          <span style={{ fontSize: 14, fontWeight: 600, color: '#1c1917', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {contact.name}
+          </span>
+          {contact.relationship === 'professional' && <BusinessIcon size={13} />}
         </div>
         <div style={{ fontSize: 12, color: '#a8a29e', marginTop: 2 }}>
           Last {formatDaysAgo(days)}
@@ -64,15 +75,18 @@ function CompactSquareCard({ contact, onOpen }) {
         <Avatar contact={contact} size={40} />
       </div>
       <div style={{ textAlign: 'center', width: '100%' }}>
-        <div style={{
-          fontSize: 12,
-          fontWeight: 600,
-          color: '#1c1917',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-        }}>
-          {contact.name.split(' ')[0]}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+          <span style={{
+            fontSize: 12,
+            fontWeight: 600,
+            color: '#1c1917',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}>
+            {contact.name.split(' ')[0]}
+          </span>
+          {contact.relationship === 'professional' && <BusinessIcon size={11} />}
         </div>
         <div style={{ fontSize: 10, color: '#a8a29e', marginTop: 1 }}>
           {formatDaysAgo(days)}
@@ -102,6 +116,7 @@ function TrackRow({ contact, onOpen, divider }) {
         <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: '#44403c', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {contact.name}
         </span>
+        {contact.relationship === 'professional' && <BusinessIcon size={12} />}
         <span style={{ fontSize: 11, color: '#c4bdb8', flexShrink: 0 }}>
           {formatDaysAgo(days)}
         </span>

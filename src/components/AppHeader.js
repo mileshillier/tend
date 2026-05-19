@@ -34,7 +34,7 @@ export function AppHeader({ selectedContact, onBack, onLog }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 16px',
+          padding: '0 16px 8px',
         }}
       >
         {isDetail ? (
