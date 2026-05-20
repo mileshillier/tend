@@ -7,6 +7,8 @@ import { AddContactModal } from './components/AddContactModal';
 import { HomeScreen } from './screens/HomeScreen';
 import { ContactsScreen } from './screens/ContactsScreen';
 import { ContactDetailScreen } from './screens/ContactDetailScreen';
+import { ReportsScreen } from './screens/ReportsScreen';
+import { SettingsScreen } from './screens/SettingsScreen';
 
 export default function App() {
   const [contacts, setContacts] = useState(initialContacts);
@@ -88,11 +90,15 @@ export default function App() {
           contacts={contacts}
           onOpenContact={openContact}
         />
-      ) : (
+      ) : activeTab === 'contacts' ? (
         <ContactsScreen
           contacts={contacts}
           onOpenContact={openContact}
         />
+      ) : activeTab === 'reports' ? (
+        <ReportsScreen contacts={contacts} onGoHome={() => handleTabChange('home')} />
+      ) : (
+        <SettingsScreen />
       )}
 
       <BottomNav

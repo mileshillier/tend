@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Avatar } from '../components/Avatar';
-import { getHealthStatus, getOverdueRatio, getDaysSince, formatDaysAgo } from '../data/contacts';
+import { getOverdueRatio, getDaysSince, formatDaysAgo } from '../data/contacts';
 
 const HEADER_H = 80;
 
@@ -18,22 +19,16 @@ function FullWidthCard({ contact, onOpen }) {
     <div
       onClick={() => onOpen(contact.id)}
       style={{
-        background: 'white',
-        borderRadius: 18,
-        border: '1px solid #f0ece8',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 12,
-        padding: '14px 16px',
-        boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+        background: 'white', borderRadius: 18, border: '1px solid #f0ece8',
+        cursor: 'pointer', display: 'flex', alignItems: 'center',
+        gap: 12, padding: '14px 16px', boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
       }}
     >
       <div style={{ borderRadius: '50%', border: '2px solid #ef4444', padding: 2, flexShrink: 0 }}>
         <Avatar contact={contact} size={48} />
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5, minWidth: 0 }}>
           <span style={{ fontSize: 14, fontWeight: 600, color: '#1c1917', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {contact.name}
           </span>
@@ -50,24 +45,16 @@ function FullWidthCard({ contact, onOpen }) {
   );
 }
 
-// Smaller square card for "due soon" — same grid, reduced scale
+// Smaller square card for "due soon"
 function CompactSquareCard({ contact, onOpen }) {
   const days = getDaysSince(contact);
   return (
     <div
       onClick={() => onOpen(contact.id)}
       style={{
-        background: 'white',
-        borderRadius: 16,
-        border: '1px solid #f0ece8',
-        cursor: 'pointer',
-        aspectRatio: '1',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 6,
-        padding: '0 10px',
+        background: 'white', borderRadius: 16, border: '1px solid #f0ece8',
+        cursor: 'pointer', aspectRatio: '1', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', gap: 6, padding: '0 10px',
         boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
       }}
     >
@@ -76,14 +63,7 @@ function CompactSquareCard({ contact, onOpen }) {
       </div>
       <div style={{ textAlign: 'center', width: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
-          <span style={{
-            fontSize: 12,
-            fontWeight: 600,
-            color: '#1c1917',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          }}>
+          <span style={{ fontSize: 12, fontWeight: 600, color: '#1c1917', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {contact.name.split(' ')[0]}
           </span>
           {contact.relationship === 'professional' && <BusinessIcon size={11} />}
@@ -104,19 +84,16 @@ function TrackRow({ contact, onOpen, divider }) {
       {divider && <div style={{ height: 1, background: '#faf8f5', marginLeft: 54 }} />}
       <div
         onClick={() => onOpen(contact.id)}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          padding: '9px 14px',
-          cursor: 'pointer',
-        }}
+        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '9px 14px', cursor: 'pointer' }}
       >
         <Avatar contact={contact} size={30} />
-        <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: '#44403c', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {contact.name}
-        </span>
-        {contact.relationship === 'professional' && <BusinessIcon size={12} />}
+        {/* Name + icon inline */}
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 5, minWidth: 0 }}>
+          <span style={{ fontSize: 13, fontWeight: 500, color: '#44403c', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {contact.name}
+          </span>
+          {contact.relationship === 'professional' && <BusinessIcon size={12} />}
+        </div>
         <span style={{ fontSize: 11, color: '#c4bdb8', flexShrink: 0 }}>
           {formatDaysAgo(days)}
         </span>
@@ -128,28 +105,56 @@ function TrackRow({ contact, onOpen, divider }) {
   );
 }
 
-function SectionLabel({ children, muted }) {
+const FILTER_OPTIONS = [
+  { value: 'all', label: 'All' },
+  { value: 'professional', label: 'Business' },
+  { value: 'personal', label: 'Personal' },
+];
+
+function SectionLabel({ children, muted, filter, onFilter }) {
   return (
-    <div style={{ padding: '0 16px 10px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px 10px' }}>
       <span style={{
-        fontSize: 11,
-        fontWeight: 600,
+        fontSize: 11, fontWeight: 600,
         color: muted ? '#c4bdb8' : '#a8a29e',
-        textTransform: 'uppercase',
-        letterSpacing: '0.07em',
+        textTransform: 'uppercase', letterSpacing: '0.07em',
       }}>
         {children}
       </span>
+      <div style={{ display: 'flex', gap: 4 }}>
+        {FILTER_OPTIONS.map(opt => (
+          <button
+            key={opt.value}
+            onClick={() => onFilter(opt.value)}
+            style={{
+              fontSize: 10, fontWeight: 600, padding: '3px 8px', borderRadius: 20,
+              border: filter === opt.value ? '1.5px solid #4d7c5f' : '1.5px solid #e7e5e4',
+              background: filter === opt.value ? '#e4ede8' : 'transparent',
+              color: filter === opt.value ? '#2d5a40' : '#a8a29e',
+              cursor: 'pointer', letterSpacing: '0.01em',
+            }}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
 
 export function HomeScreen({ contacts, onOpenContact }) {
+  const [filter, setFilter] = useState('all');
+
   const sorted = [...contacts].sort((a, b) => getOverdueRatio(b) - getOverdueRatio(a));
 
-  const urgent  = sorted.filter(c => getOverdueRatio(c) > 1.5);
-  const dueSoon = sorted.filter(c => { const r = getOverdueRatio(c); return r > 1 && r <= 1.5; });
-  const onTrack = sorted.filter(c => getOverdueRatio(c) <= 1);
+  function applyFilter(list) {
+    if (filter === 'all') return list;
+    return list.filter(c => c.relationship === filter);
+  }
+
+  const urgent  = applyFilter(sorted.filter(c => getOverdueRatio(c) > 1.5));
+  const dueSoon = applyFilter(sorted.filter(c => { const r = getOverdueRatio(c); return r > 1 && r <= 1.5; }));
+  const onTrack = applyFilter(sorted.filter(c => getOverdueRatio(c) <= 1));
 
   const totalOverdue = urgent.length + dueSoon.length;
 
@@ -168,11 +173,9 @@ export function HomeScreen({ contacts, onOpenContact }) {
       {/* Reach out — full-width cards */}
       {urgent.length > 0 && (
         <section style={{ marginBottom: 32 }}>
-          <SectionLabel>Reach out · {urgent.length}</SectionLabel>
+          <SectionLabel filter={filter} onFilter={setFilter}>Reach out · {urgent.length}</SectionLabel>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '0 16px' }}>
-            {urgent.map(c => (
-              <FullWidthCard key={c.id} contact={c} onOpen={onOpenContact} />
-            ))}
+            {urgent.map(c => <FullWidthCard key={c.id} contact={c} onOpen={onOpenContact} />)}
           </div>
         </section>
       )}
@@ -180,16 +183,9 @@ export function HomeScreen({ contacts, onOpenContact }) {
       {/* Due soon — compact square grid */}
       {dueSoon.length > 0 && (
         <section style={{ marginBottom: 32 }}>
-          <SectionLabel>Due soon · {dueSoon.length}</SectionLabel>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
-            gap: 10,
-            padding: '0 16px',
-          }}>
-            {dueSoon.map(c => (
-              <CompactSquareCard key={c.id} contact={c} onOpen={onOpenContact} />
-            ))}
+          <SectionLabel filter={filter} onFilter={setFilter}>Due soon · {dueSoon.length}</SectionLabel>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, padding: '0 16px' }}>
+            {dueSoon.map(c => <CompactSquareCard key={c.id} contact={c} onOpen={onOpenContact} />)}
           </div>
         </section>
       )}
@@ -197,26 +193,22 @@ export function HomeScreen({ contacts, onOpenContact }) {
       {/* On track — flat list */}
       {onTrack.length > 0 && (
         <section>
-          <SectionLabel muted>Looking good · {onTrack.length}</SectionLabel>
-          <div style={{
-            margin: '0 16px',
-            background: 'white',
-            borderRadius: 16,
-            border: '1px solid #f0ece8',
-            overflow: 'hidden',
-          }}>
-            {onTrack.map((c, i) => (
-              <TrackRow key={c.id} contact={c} onOpen={onOpenContact} divider={i > 0} />
-            ))}
+          <SectionLabel muted filter={filter} onFilter={setFilter}>Looking good · {onTrack.length}</SectionLabel>
+          <div style={{ margin: '0 16px', background: 'white', borderRadius: 16, border: '1px solid #f0ece8', overflow: 'hidden' }}>
+            {onTrack.map((c, i) => <TrackRow key={c.id} contact={c} onOpen={onOpenContact} divider={i > 0} />)}
           </div>
         </section>
       )}
 
-      {totalOverdue === 0 && onTrack.length === 0 && (
+      {urgent.length === 0 && dueSoon.length === 0 && onTrack.length === 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '64px 32px', textAlign: 'center' }}>
           <div style={{ fontSize: 40, marginBottom: 16 }}>🌱</div>
-          <p style={{ fontSize: 15, fontWeight: 600, color: '#1c1917', margin: '0 0 4px' }}>You're all caught up</p>
-          <p style={{ fontSize: 13, color: '#a8a29e', margin: 0 }}>No overdue check-ins right now.</p>
+          <p style={{ fontSize: 15, fontWeight: 600, color: '#1c1917', margin: '0 0 4px' }}>
+            {filter === 'all' ? "You're all caught up" : `No ${filter === 'professional' ? 'business' : 'personal'} contacts to show`}
+          </p>
+          <p style={{ fontSize: 13, color: '#a8a29e', margin: 0 }}>
+            {filter === 'all' ? 'No overdue check-ins right now.' : 'Try switching the filter above.'}
+          </p>
         </div>
       )}
     </div>
